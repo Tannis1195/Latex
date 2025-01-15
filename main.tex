@@ -1,0 +1,63 @@
+\documentclass[a4paper, 12pt]{article}
+\usepackage{paket}
+
+\newcommand*{\nsection}[1]{
+   \section*{#1}
+      \addcontentsline{toc}{section}{#1}
+}
+
+\title{Titel}
+\author{Name}
+\date{\today}
+
+\begin{document}
+\makeatletter
+    \begin{titlepage}
+        \begin{center}
+            \vspace*{10\baselineskip}
+            {\LARGE \bfseries  \@title }\\[2ex] 
+            {\large  \@author}\\[2ex]
+            {\large \@date}\\[50ex] 
+            
+        \end{center}
+    \end{titlepage}
+\setlength{\parindent}{0cm}
+\thispagestyle{empty} % Suppress headers and footers on first page
+
+%\includepdf{TitelPage.pdf}
+
+
+\pagenumbering{roman} % Roman page numbering
+    \cfoot{\thepage}
+
+
+% Table of Contents
+\renewcommand{\contentsname}{Table of Contents}
+\tableofcontents
+\pagebreak
+
+
+\listoffigures
+\addcontentsline{toc}{section}{List of Figures}
+\listoftables
+
+\addcontentsline{toc}{section}{List of Tables}
+\include{Text/Abbreviations}
+
+% Adjust line spacing for the main text
+\renewcommand{\baselinestretch}{1.5}\normalsize
+
+
+
+% Input your chapter files
+\pagenumbering{arabic} % Roman page numbering
+    \cfoot{\thepage}
+\include{Text/Text1.tex}
+
+\interlinepenalty=10000
+% Bibliography
+\pagebreak
+\setlength\bibitemsep{\baselineskip}
+\bibliographystyle{apacite}
+\bibliography{sample}
+\end{document}

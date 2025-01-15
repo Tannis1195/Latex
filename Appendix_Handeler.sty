@@ -1,0 +1,29 @@
+\AtBeginDocument{
+    \newcommand{\refB}[1]{Appendix \ref{#1}}% Creates the \refB command to generate "Appendix #number#"
+    \newcommand{\refb}[1]{appendix \ref{#1}}% Creates the \refb command to generate "appendix #number#"
+}
+
+\AtEndDocument{
+    \newpage
+
+    \renewcommand{\thesubsection}{Appendix \arabic{subsection}} % Displays "Appendix #number#" instead of the regular index
+
+    \setcounter{subsection}{0}
+    \renewcommand*{\@seccntformat}[1]{\csname the#1\endcsname:\hspace{0.2cm}} % Adds ":" behind the number in the appendix and space. Does not appear in the table of contents
+
+    \newcounter{BilagorNum}[section]
+    \newenvironment{appendix_Entry}[1][]{\refstepcounter{BilagorNum}\medskip}{\medskip} % Creates the appendix_Entry environment. Include your appendix content between \begin{appendix_Entry} and \end{appendix_Entry}.
+
+    \addcontentsline{toc}{section}{Appendix}
+    \section*{Appendix} % Adds "Appendices" to the table of contents.
+
+    \pagenumbering{Roman} % Roman page numbering
+    \cfoot{\thepage}
+
+    \input{Text/Appendix} % Imports appendices. You may need to change this file name.
+}
+
+\AtBeginDocument{
+    \renewcommand{\numberline}[1]{{\@cftbsnum #1\@cftasnum~}\@cftasnumb} %Dynamiskt avstånd i Tabel of contens
+    
+}
